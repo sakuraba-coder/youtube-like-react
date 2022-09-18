@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Search } from "./pages/Search";
+import { Top } from "./pages/Top";
+import { Watch } from "./pages/Watch";
+import { StoreProvider } from "./store";
+import "normalize.css";
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider>
+      <Router>
+        <Routes>
+          <Route index element={<Top />} />
+          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/watch" element={<Watch />} />
+        </Routes>
+      </Router>
+    </StoreProvider>
   );
-}
-
-export default App;
+};
